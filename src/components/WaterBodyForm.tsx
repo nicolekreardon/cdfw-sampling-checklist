@@ -7,6 +7,8 @@ interface Props {
   onCancel?: () => void
 }
 
+const SAMPLE_OPTIONS = Array.from({ length: 11 }, (_, i) => i) // 0 through 10
+
 function toCount(value: string): number {
   return Math.max(0, Math.floor(Number(value)) || 0)
 }
@@ -66,26 +68,56 @@ export default function WaterBodyForm({ initial, onSave, onCancel }: Props) {
         </label>
       </div>
 
-      <div className="flex gap-4">
+            <div className="flex gap-4">
         <div className="flex-1">
           <label className="block text-sm font-medium">Smithroot samples</label>
-          <input
-            type="number"
-            min={0}
-            className="mt-1 w-full rounded border border-gray-300 p-2"
-            value={smithroot}
-            onChange={(e) => setSmithroot(toCount(e.target.value))}
-          />
+          <div className="mt-1 flex gap-2">
+            <select
+              className="w-full rounded border border-gray-300 p-2"
+              value={smithroot}
+              onChange={(e) => setSmithroot(Number(e.target.value))}
+            >
+              {SAMPLE_OPTIONS.map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+            {smithroot > 0 && (
+              <button
+                type="button"
+                onClick={() => setSmithroot(0)}
+                className="whitespace-nowrap rounded border border-gray-300 px-2 text-sm text-gray-600 hover:bg-gray-100"
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
         <div className="flex-1">
           <label className="block text-sm font-medium">Plankton tow samples</label>
-          <input
-            type="number"
-            min={0}
-            className="mt-1 w-full rounded border border-gray-300 p-2"
-            value={plankton}
-            onChange={(e) => setPlankton(toCount(e.target.value))}
-          />
+          <div className="mt-1 flex gap-2">
+            <select
+              className="w-full rounded border border-gray-300 p-2"
+              value={plankton}
+              onChange={(e) => setPlankton(Number(e.target.value))}
+            >
+              {SAMPLE_OPTIONS.map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+            {plankton > 0 && (
+              <button
+                type="button"
+                onClick={() => setPlankton(0)}
+                className="whitespace-nowrap rounded border border-gray-300 px-2 text-sm text-gray-600 hover:bg-gray-100"
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
