@@ -3,6 +3,10 @@ import type { ChecklistItem, Trip, WaterBody } from './types'
 import WaterBodyForm from './components/WaterBodyForm'
 import { calculateChecklist } from './calculate'
 
+function displayName(wb: WaterBody, index: number): string {
+  return wb.name.trim() || `Water Body ${index + 1}`
+}
+
 export default function App() {
   const [tripName, setTripName] = useState('')
   const [waterBodies, setWaterBodies] = useState<WaterBody[]>([])
@@ -98,7 +102,7 @@ export default function App() {
               className="flex items-start justify-between rounded-lg border border-gray-300 bg-white p-4"
             >
               <div>
-                <p className="font-medium">{wb.name}</p>
+                <p className="font-medium">{displayName(wb, waterBodies.indexOf(wb))}</p>
                 <p className="text-sm text-gray-600">
                   {wb.type === 'river' ? 'River' : 'Non-river'}
                 </p>

@@ -19,10 +19,6 @@ export default function WaterBodyForm({ initial, onSave, onCancel }: Props) {
   const [error, setError] = useState('')
 
   function handleSave() {
-    if (!name.trim()) {
-      setError('Please enter a water body name.')
-      return
-    }
     if (smithroot + plankton === 0) {
       setError('Enter at least one sample.')
       return
@@ -40,7 +36,9 @@ export default function WaterBodyForm({ initial, onSave, onCancel }: Props) {
   return (
     <div className="space-y-3 rounded-lg border border-gray-300 bg-white p-4">
       <div>
-        <label className="block text-sm font-medium">Water body name</label>
+        <label className="block text-sm font-medium">
+          Water body name <span className="font-normal text-gray-400">(optional)</span>
+        </label>
         <input
           className="mt-1 w-full rounded border border-gray-300 p-2"
           value={name}
