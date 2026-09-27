@@ -9,10 +9,6 @@ interface Props {
 
 const SAMPLE_OPTIONS = Array.from({ length: 11 }, (_, i) => i) // 0 through 10
 
-function toCount(value: string): number {
-  return Math.max(0, Math.floor(Number(value)) || 0)
-}
-
 export default function WaterBodyForm({ initial, onSave, onCancel }: Props) {
   const [name, setName] = useState(initial?.name ?? '')
   const [type, setType] = useState<WaterBodyType>(initial?.type ?? 'river')
