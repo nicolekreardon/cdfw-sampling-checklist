@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { ChecklistItem, Trip, WaterBody } from './types'
 import WaterBodyForm from './components/WaterBodyForm'
-import { calculateChecklist } from './calculate'
+import { calculateByWaterBody, calculateChecklist } from './calculate'
 
 function displayName(wb: WaterBody, index: number): string {
   return wb.name.trim() || `Water Body ${index + 1}`
@@ -33,30 +33,63 @@ export default function App() {
     setWaterBodies((prev) => prev.filter((wb) => wb.id !== id))
   }
 
-  if (view === 'checklist') {
+    if (view === 'checklist') {
     const checklist = calculateChecklist(trip)
     const grouped = checklist.reduce<Record<string, ChecklistItem[]>>((acc, item) => {
       ;(acc[item.category] ??= []).push(item)
       return acc
     }, {})
 
+    const byWaterBody = calculateByWaterBody(trip)
+
     return (
-      <div className="mx-auto max-w-2xl space-y-6 p-6">
+      <div className="mx-auto max-w-2xl space-y-8 p-6">
         <h1 className="text-2xl font-bold text-blue-700">Equipment Checklist</h1>
         <p className="text-gray-600">Trip: {trip.name}</p>
 
-        {Object.entries(grouped).map(([category, items]) => (
-          <section key={category}>
-            <h2 className="mb-2 text-lg font-semibold">{category}</h2>
-            <ul className="space-y-1">
-              {items.map((item) => (
-                <li key={item.item}>
-                  ☐ {item.item} × {item.quantity}
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        <div>
+          <h2 className="mb-3 text-xl font-semibold">Total Quantities to Gather</h2>
+          {Object.entries(grouped).map(([category, items]) => (
+            <section key={category} className="mb-4">
+              <h3 className="mb-2 text-lg font-medium">{category}</h3>
+              <ul className="space-y-1">
+                {items.map((item) => (
+                  <li key={item.item}>
+                    ☐ {item.item} × {item.quantity}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        <div>
+          <h2 className="mb-3 text-xl font-semibold">Breakdown by Water Body</h2>
+          {byWaterBody.map(({ waterBodyId, items }, index) => {
+            const wb = waterBodies.find((w) => w.id === waterBodyId)
+            if (!wb) return null
+            return (
+              <section key={waterBodyId} className="mb-4 rounded-lg border border-gray-300 bg-white p-4">
+                <h3 className="mb-2 text-lg font-medium">
+                  {displayName(wb, index)} <span className="text-sm font-normal text-gray-500">
+                    ({wb.type === 'river' ? 'River' : 'Non-river'})
+                  </span>
+                </h3>
+                {items.length === 0 ? (
+                  <p className="text-sm text-gray-500">No equipment needed.</p>
+                ) : (
+                  <ul className="space-y-1">
+                    {items.map((item) => (
+                      <li key={item.item}>
+                        {item.item} × {item.quantity}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            )
+          })}
+        </div>
 
         <button
           onClick={() => setView('build')}

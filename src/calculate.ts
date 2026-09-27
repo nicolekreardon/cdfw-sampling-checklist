@@ -24,3 +24,20 @@ export function calculateChecklist(trip: Trip): ChecklistItem[] {
   const general = generalItems.map((g) => ({ category: 'General Equipment', ...g }))
   return [...totals.values(), ...general]
 }
+
+export function calculateByWaterBody(
+  trip: Trip,
+): { waterBodyId: string; items: ChecklistItem[] }[] {
+  return trip.waterBodies.map((wb) => {
+    const items: ChecklistItem[] = []
+
+    for (const rule of equipmentRules) {
+      if (rule.waterBodyType !== wb.type) continue
+      const quantity = wb[rule.sampleType] * rule.perSample
+      if (quantity === 0) continue
+      items.push({ category: rule.category, item: rule.item, quantity })
+    }
+
+    return { waterBodyId: wb.id, items }
+  })
+}
