@@ -21,7 +21,8 @@ export interface EquipmentRule {
   category: 'Smithroot' | 'Plankton Tow'
   waterBodyType: WaterBodyType
   sampleType: SampleType
-  perSample: number
+  firstSampleQty: number       // included once, for the first sample
+  perAdditionalSampleQty: number // included for each sample after the first
 }
 
 export interface GeneralItem {
