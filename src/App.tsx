@@ -115,10 +115,15 @@ export default function App() {
         />
       </div>
 
+      <section className="space-y-2">
+        <h2 className="text-lg font-semibold">Add a water body</h2>
+        <WaterBodyForm onSave={addWaterBody} />
+      </section>
+
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Your trip</h2>
         {waterBodies.length === 0 && (
-          <p className="text-gray-500">No water bodies yet. Add one below.</p>
+          <p className="text-gray-500">No water bodies yet. Add one above.</p>
         )}
 
         {waterBodies.map((wb) =>
@@ -153,11 +158,6 @@ export default function App() {
             </div>
           ),
         )}
-      </section>
-
-      <section className="space-y-2">
-        <h2 className="text-lg font-semibold">Add a water body</h2>
-        <WaterBodyForm onSave={addWaterBody} />
       </section>
 
       <button
