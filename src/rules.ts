@@ -2,20 +2,20 @@ import type { EquipmentRule, GeneralItem } from './types'
 
 export const equipmentRules: EquipmentRule[] = [
   // Non-river Smithroot
-  { item: 'Ziploc bag',        category: 'Smithroot', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Gloves',            category: 'Smithroot', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Sharpie',           category: 'Smithroot', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Blank filter',      category: 'Smithroot', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 0 },
-  { item: 'Real filter',       category: 'Smithroot', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Tap water bottle',  category: 'Smithroot', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 0 },
+  { item: 'Ziploc bag',        category: 'Smith-Root', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Gloves',            category: 'Smith-Root', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Sharpie',           category: 'Smith-Root', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Blank filter',      category: 'Smith-Root', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 0 },
+  { item: 'Real filter',       category: 'Smith-Root', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Tap water bottle',  category: 'Smith-Root', waterBodyType: 'non-river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 0 },
 
   // River Smithroot
-  { item: 'Ziploc bag',        category: 'Smithroot', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Gloves',            category: 'Smithroot', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Sharpie',           category: 'Smithroot', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Blank filter',      category: 'Smithroot', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Real filter',       category: 'Smithroot', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
-  { item: 'Tap water bottle',  category: 'Smithroot', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Ziploc bag',        category: 'Smith-Root', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Gloves',            category: 'Smith-Root', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Sharpie',           category: 'Smith-Root', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Blank filter',      category: 'Smith-Root', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Real filter',       category: 'Smith-Root', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
+  { item: 'Tap water bottle',  category: 'Smith-Root', waterBodyType: 'river', sampleType: 'smithroot', firstSampleQty: 1, perAdditionalSampleQty: 1 },
 
   // Non-river Plankton Tow
   { item: 'Ziploc bag',                 category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },

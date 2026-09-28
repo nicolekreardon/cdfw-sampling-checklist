@@ -144,7 +144,7 @@ export default function App() {
                 <p className="text-sm text-gray-600">
                   {wb.type === 'river' ? 'River' : 'Non-river'}
                 </p>
-                <p className="text-sm">Smithroot: {wb.smithroot}</p>
+                <p className="text-sm">Smith-Root: {wb.smithroot}</p>
                 <p className="text-sm">Plankton tow: {wb.plankton}</p>
               </div>
               <div className="flex gap-3 text-sm">
