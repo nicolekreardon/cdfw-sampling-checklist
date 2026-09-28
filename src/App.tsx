@@ -44,7 +44,7 @@ export default function App() {
 
     return (
       <div className="mx-auto max-w-2xl space-y-8 p-6">
-        <h1 className="text-2xl font-bold text-blue-700">Equipment Checklist</h1>
+        <h1 className="text-2xl font-bold text-blue-700">Item Checklist</h1>
         <p className="text-gray-600">Trip: {trip.name}</p>
 
         <div>
@@ -70,6 +70,10 @@ export default function App() {
           {byWaterBody.map(({ waterBodyId, items }, index) => {
             const wb = waterBodies.find((w) => w.id === waterBodyId)
             if (!wb) return null
+            const itemsByCategory = items.reduce<Record<string, ChecklistItem[]>>((acc, item) => {
+              ;(acc[item.category] ??= []).push(item)
+              return acc
+            }, {})
             return (
               <section key={waterBodyId} className="mb-4 rounded-lg border border-gray-300 bg-white p-4">
                 <h3 className="mb-2 text-lg font-medium">
@@ -80,13 +84,22 @@ export default function App() {
                 {items.length === 0 ? (
                   <p className="text-sm text-gray-500">No equipment needed.</p>
                 ) : (
-                  <ul className="space-y-1">
-                    {items.map((item) => (
-                      <li key={item.item}>
-                        {item.item} × {item.quantity}
-                      </li>
+                  <div className="space-y-4">
+                    {Object.entries(itemsByCategory).map(([category, categoryItems]) => (
+                      <div key={category} className="rounded border-l-4 border-blue-300 bg-gray-50 p-3">
+                        <h4 className="mb-1 text-sm font-semibold uppercase tracking-wide text-blue-700">
+                          {category}
+                        </h4>
+                        <ul className="space-y-1">
+                          {categoryItems.map((item) => (
+                            <li key={item.item}>
+                              {item.item} × {item.quantity}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 )}
               </section>
             )
