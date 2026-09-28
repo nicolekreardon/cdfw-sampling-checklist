@@ -55,7 +55,9 @@ export default function App() {
               <ul className="space-y-1">
                 {items.map((item) => (
                   <li key={item.item}>
-                    ☐ {item.item} × {item.quantity}
+                    ☐ {item.item}
+                    {!(category === 'General Equipment' && item.quantity === 1) &&
+                      ` × ${item.quantity}`}
                   </li>
                 ))}
               </ul>
