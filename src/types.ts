@@ -18,7 +18,7 @@ export interface Trip {
 
 export interface EquipmentRule {
   item: string
-  category: 'Smithroot' | 'Plankton Tow'
+  category: 'Smith-Root' | 'Plankton Tow'
   waterBodyType: WaterBodyType
   sampleType: SampleType
   firstSampleQty: number       // included once, for the first sample

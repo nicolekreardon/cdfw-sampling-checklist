@@ -66,7 +66,7 @@ export default function WaterBodyForm({ initial, onSave, onCancel }: Props) {
 
             <div className="flex gap-4">
         <div className="flex-1">
-          <label className="block text-sm font-medium">Smithroot samples</label>
+          <label className="block text-sm font-medium">Smith-Root samples</label>
           <div className="mt-1 flex gap-2">
             <select
               className="w-full rounded border border-gray-300 p-2"
