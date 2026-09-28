@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { ChecklistItem, Trip, WaterBody } from './types'
 import WaterBodyForm from './components/WaterBodyForm'
 import { calculateByWaterBody, calculateChecklist } from './calculate'
+import { buildChecklistPdf } from './pdf'
 
 function displayName(wb: WaterBody, index: number): string {
   return wb.name.trim() || `Water Body ${index + 1}`
@@ -41,6 +42,24 @@ export default function App() {
     }, {})
 
     const byWaterBody = calculateByWaterBody(trip)
+    const sections = byWaterBody.flatMap(({ waterBodyId, items }, index) => {
+      const wb = waterBodies.find((w) => w.id === waterBodyId)
+      return wb
+        ? [
+            {
+              name: displayName(wb, index),
+              typeLabel: wb.type === 'river' ? 'River' : 'Non-river',
+              items,
+            },
+          ]
+        : []
+    })
+
+    const fileName = `${trip.name.replace(/[^a-z0-9]+/gi, '_')}_checklist.pdf`
+
+    function downloadPdf() {
+      buildChecklistPdf(trip.name, checklist, sections).save(fileName)
+    }
 
     return (
       <div className="mx-auto max-w-2xl space-y-8 p-6">
@@ -105,7 +124,12 @@ export default function App() {
             )
           })}
         </div>
-
+        <button
+          onClick={downloadPdf}
+          className="mr-3 rounded bg-blue-700 px-4 py-2 text-white hover:bg-blue-800"
+        >
+          Save as PDF
+        </button>
         <button
           onClick={() => setView('build')}
           className="rounded border border-gray-300 px-4 py-2 hover:bg-gray-100"
