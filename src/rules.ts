@@ -22,7 +22,6 @@ export const equipmentRules: EquipmentRule[] = [
   { item: 'Gloves',                     category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Sharpie',                    category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Tap water bottle',           category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 2, perAdditionalSampleQty: 0 },
-  { item: 'Cooler blank falcon tube',   category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 0 },
   { item: 'PT blank falcon tube',       category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 0 },
   { item: 'Real sample falcon tube',    category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Whirl pack',                 category: 'Plankton Tow', waterBodyType: 'non-river', sampleType: 'plankton', firstSampleQty: 2, perAdditionalSampleQty: 1 },
@@ -34,7 +33,6 @@ export const equipmentRules: EquipmentRule[] = [
   { item: 'Gloves',                     category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Sharpie',                    category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Tap water bottle',           category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 2, perAdditionalSampleQty: 2 },
-  { item: 'Cooler blank falcon tube',   category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 0 },
   { item: 'PT blank falcon tube',       category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Real sample falcon tube',    category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 1 },
   { item: 'Whirl pack',                 category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 2, perAdditionalSampleQty: 2 },
@@ -42,9 +40,12 @@ export const equipmentRules: EquipmentRule[] = [
   { item: 'Extra ziploc (for plankton sample bottles)', category: 'Plankton Tow', waterBodyType: 'river', sampleType: 'plankton', firstSampleQty: 1, perAdditionalSampleQty: 0 },
 ]
 
+// Number of coolers brought on every trip. Cooler blank falcon tubes follow this number.
+export const COOLER_COUNT = 1
+
 // Brought on every trip, regardless of what's being sampled
 export const alwaysBringItems: GeneralItem[] = [
-  { item: 'Cooler', quantity: 1 },
+  { item: 'Cooler', quantity: COOLER_COUNT },
   { item: 'Ice packs', quantity: 1 }, // TODO: confirm quantity with your sister
   { item: 'Clean tote with ziplocs', quantity: 1 },
   { item: 'Spare ziploc bag (emergency kit)', quantity: 1 }, // TODO: confirm quantity
@@ -61,6 +62,7 @@ export const smithrootConditionalItems: GeneralItem[] = [
 // Brought once per trip, only if plankton tow sampling happens anywhere on the trip
 // (Plankton net is handled separately, since it's counted per water body)
 export const planktonConditionalItems: GeneralItem[] = [
+  { item: 'Cooler blank falcon tube (1 per cooler)', quantity: COOLER_COUNT },
   { item: 'Ethanol', quantity: 1 },
   { item: 'pH buffer', quantity: 1 },
   { item: 'Ruler', quantity: 1 },
