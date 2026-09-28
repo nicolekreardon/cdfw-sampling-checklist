@@ -48,7 +48,7 @@ export default function App() {
         <p className="text-gray-600">Trip: {trip.name}</p>
 
         <div>
-          <h2 className="mb-3 text-xl font-semibold">Total Quantities to Gather</h2>
+          <h2 className="mb-3 text-xl font-semibold">Equipment by Category</h2>
           {Object.entries(grouped).map(([category, items]) => (
             <section key={category} className="mb-4">
               <h3 className="mb-2 text-lg font-medium">{category}</h3>
